@@ -1,2 +1,2 @@
 # sesame
-A web-controlled relay for the Raspberry Pi
+A demo program to drive a relay program using a Raspberry PI
