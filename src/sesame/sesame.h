@@ -18,5 +18,6 @@ int sesameIsValidUserPin();
 void sesameShowPinError();
 void sesameShowOTPError();
 void sesameSendOTP();
+void sesameSendNotification();
 
 #endif

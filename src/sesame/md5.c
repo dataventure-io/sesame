@@ -177,20 +177,20 @@ int md5main(int argc, char **argv) {
     // }
  
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
-    uint8_t *p;
+    //uint8_t *p;
  
     // display result
  
-    p=(uint8_t *)&md5_hash.h0;
+    //p=(uint8_t *)&md5_hash.h0;
    // printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], md5_hash.h0);
  
-    p=(uint8_t *)&md5_hash.h1;
+    //p=(uint8_t *)&md5_hash.h1;
    // printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], md5_hash.h1);
  
-    p=(uint8_t *)&md5_hash.h2;
+    //p=(uint8_t *)&md5_hash.h2;
   //  printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], md5_hash.h2);
  
-    p=(uint8_t *)&md5_hash.h3;
+    //p=(uint8_t *)&md5_hash.h3;
   //  printf("%2.2x%2.2x%2.2x%2.2x", p[0], p[1], p[2], p[3], md5_hash.h3);
   //  puts("");
  

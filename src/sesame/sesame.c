@@ -41,19 +41,20 @@ int cgiMain() {
 		}
 		else
 		{
-			wireOneShot();
-			sesameShowPinForm();
-			/*
 			sesameGenOTP();
 			sesameSendOTP();
-			sesameShowOTPForm();*/
+			sesameShowOTPForm();
 		}
 		
 	}
 	/* check if the user is submitting their one-time password */
 	else if (cgiFormSubmitClicked("submit_userotp") == cgiFormSuccess)
 	{
-		if (!sesameCheckOTP())
+		if (sesameCheckOTP())
+		{
+			sesameSendNotification();
+		}
+		else
 		{
 			sesameShowOTPError();
 		}
@@ -157,7 +158,7 @@ void sesameGenOTP()
 	// get the current time in seconds since 1-Jan 1970
 	seconds = time(NULL);
 
-	// cacl two minute intervals - this will be the amount 
+	// calc two minute intervals - this will be the amount 
 	// of time that the OTP is valid
 	long two_min_intervals = (long) (seconds / 120);
 
@@ -190,19 +191,21 @@ void sesameGetUserOTP() {
 int sesameCheckOTP() {
 	int otpMatch = 0;
 
-	// get the pin number from the user
+	//fprintf(cgiOut, "get the pin number from the user<br/>\n");
 	sesameGetUserPin();
 
-	// generate an OTP based on the pin
+	//fprintf(cgiOut, "generate an OTP based on the pin<br/>\n");
 	sesameGenOTP();
 
-	// get the OTP from the user
+	//fprintf(cgiOut, "get the OTP from the user<br/>\n");
 	sesameGetUserOTP();
 
-	// compare the user-supplied OTP to the generated OTP.
+	//fprintf(cgiOut, "compare the user-supplied OTP to the generated OTP.<br/>\n");
 	// if they match, then send a one-shot signal
 	if (!strcmp(input_userotp, userotp))
 	{
+		//fprintf(cgiOut, "the strings match<br/>\n");
+
 		otpMatch = 1;
 		wireOneShot();
 	}
@@ -240,6 +243,23 @@ int sesameIsValidUserPin()
 */
 void sesameSendOTP()
 {
-	char* email = userGetEmail(userpin);
-	mailSendOTP(email, userotp);
+	char email[USER_LEN];
+	
+	if (userGetEmail(userpin, email))
+	{
+		mailSendOTP(email, userotp);
+	}
+}
+
+void sesameSendNotification()
+{
+	char email[USER_LEN];
+	char adminEmail[USER_LEN];
+	int hasUserEmail	= userGetEmail(userpin, email);
+	int hasAdminEmail	= userGetEmail("admin", adminEmail);
+
+	if (hasUserEmail && hasAdminEmail)
+	{
+		mailSendNotification(adminEmail, userpin, email);
+	}
 }

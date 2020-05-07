@@ -8,6 +8,8 @@
 
 #define cgicTempDir "/tmp"
 
+int mkstemp(char*);
+
 #if CGICDEBUG
 #define CGICDEBUGSTART \
 	{ \

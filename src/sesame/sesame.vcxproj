@@ -56,7 +56,7 @@
       <LibraryDependencies>wiringPi</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent>
-      <Command>sudo cp $(RemoteRootDir)/$(ProjectName)/bin/$(Platform)/$(Configuration)/$(ProjectName).cgi /usr/lib/cgi-bin</Command>
+      <Command>gpio export 17 out; sudo cp $(RemoteRootDir)/$(ProjectName)/bin/$(Platform)/$(Configuration)/$(ProjectName).cgi /usr/lib/cgi-bin</Command>
       <Message>export pin 17 using the gpio utility so that we can execute the blink program without sudo</Message>
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
@@ -75,6 +75,7 @@
     <ClCompile Include="md5.c" />
     <ClCompile Include="sesame.c" />
     <ClCompile Include="user.c" />
+    <ClCompile Include="util.c" />
     <ClCompile Include="wire.c" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +84,14 @@
     <ClInclude Include="md5.h" />
     <ClInclude Include="sesame.h" />
     <ClInclude Include="user.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="wire.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <CAdditionalWarning>switch;no-deprecated-declarations;empty-body;return-type;parentheses;no-pointer-sign;no-format;uninitialized;unreachable-code;unused-function;unused-value;unused-variable</CAdditionalWarning>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

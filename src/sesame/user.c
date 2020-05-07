@@ -8,53 +8,51 @@
 #include <string.h>
 
 #include "user.h"
+#include "util.h"
 
-UserRecord userRec;
 
 /*
 	Check if the user pin is valid
 */
 int userIsValid(char* userpin)
 {
-	char* email = userGetEmail(userpin);
-	
-	return (email ? 1 : 0);
+	char email[USER_LEN];
+
+	if (utilStrNullOrEmpty(userpin) == UTIL_SUCCESS ) return 0;
+
+	return userGetEmail(userpin, email);
 }
 
 /*
 	Retrieve the email address from the user list
 */
-char* userGetEmail(char* userpin)
+int userGetEmail(char* userpin, char* outEmail)
 {
+	if (utilStrNullOrEmpty(userpin)) return 0;
 	FILE* userFile;
 	char line[2 * USER_LEN];
-	char* email = NULL;
 	int found = 0;
 
 	userFile = fopen(USER_FILE, "r");
 
-	if (!userFile) return email;
+	if (!userFile) return found;
 
 	while (fgets( line, 2 * USER_LEN, userFile) && !found)
 	{
-		char* u = strtok(line, "\t");
-		if (u != NULL)
+		char* u = strtok(line, USER_DELIM);
+		if (!utilStrNullOrEmpty(u))
 		{
 			if (!strcmp(userpin, u))
 			{
-				strcpy(userRec.userpin,u);
+				char* e = strtok(NULL, USER_DELIM);
 				
-				char* e = strtok(NULL, "\t");
-				
-				if (e != NULL)
+				if (!utilStrNullOrEmpty(e))
 				{
-					strcpy(userRec.email, e);
-					int len = strlen(userRec.email);
-					if (userRec.email[len - 1] == '\n') userRec.email[len - 1] = '\0';
+					strcpy(outEmail, e);
+					int len = strlen(outEmail);
+					if (outEmail[len - 1] == '\n') outEmail[len - 1] = '\0';
 				}
-
 				
-					email = userRec.email;
 				found = 1;
 			}
 		}
@@ -62,5 +60,5 @@ char* userGetEmail(char* userpin)
 
 	fclose(userFile);
 
-	return email;
+	return found;
 }
