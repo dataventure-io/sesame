@@ -25,6 +25,7 @@ char input_userotp[USEROTP_LEN];
 */
 int cgiMain() {
 	
+
 	/* send the top of the page*/
 	sesameHandleHeader();
 	

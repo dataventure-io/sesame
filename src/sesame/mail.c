@@ -26,6 +26,7 @@ void mailSendNotification(char* adminEmail, char* userpin, char* userEmail)
 {
 	if (utilStrNullOrEmpty(adminEmail)) return;
 	if (utilStrNullOrEmpty(userEmail)) return;
+	if (utilStrNullOrEmpty(userpin)) return;
 
 	char cmd[CMD_BUF_LEN];
 	char timestr[UTIL_TIMESTR_LEN];

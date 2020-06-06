@@ -7,7 +7,6 @@
 #include <wiringPi.h>
 
 #include "wire.h"
-//#include "cgic.h"
 
 /*
 	Send a one-shot signal to pin BCM 17
@@ -23,10 +22,9 @@ void wireOneShot()
 	//fprintf(cgiOut, "digitalWrite(WIRING_PI_PIN, HIGH)<br/>\n");
 	digitalWrite(WIRING_PI_PIN, HIGH);  // On
 
-	delay(1000); // ms
+	delay(WIRING_ONE_SHOT_DELAY); // ms
 
 	//fprintf(cgiOut, "digitalWrite(WIRING_PI_PIN, LOW)<br/>\n");
 	digitalWrite(WIRING_PI_PIN, LOW);	  // Off
 
-	delay(500);
 }
