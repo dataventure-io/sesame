@@ -139,7 +139,7 @@ Note that the certificate will need to be imported into your machine's certifica
 
  I used a [breakout cable](https://www.amazon.com/dp/B0761NYF6Y/ref=cm_sw_em_r_mt_dp_U_dBHOEbC3RA3JY) and a breadboard to prototype the electronics.  If you're using a Pi Zero, you'll need to solder the 40-pin header to the system board.  If you haven't soldered in a while, you might want to practice or take a look at some youtube videos. 
  
-  #### Software Design #### 
+  ### Software Design ###
 
  The software is designed as a 1996-era web program. ![software_design_3](https://dataventure.io/wp-content/uploads/2020/04/software_design_3.png) A person browses to a CGI program URL, enters data and submits to the same CGI program.  The CGI program detects its own program state and controls outputs to the GPIO interface. 
  
