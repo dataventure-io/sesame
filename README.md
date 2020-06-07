@@ -356,7 +356,7 @@ The hardward portion of this solution is a truly humbling experience.  In retro
 
 The main concern with the implementation is security and safety.  Safety can be achieved in pretty much the same way that it works today - don't access your garage door without seeing it.  Security was another matter.  The one-time password solution works, but it is a bit clumsy.   Not good when you're in a hurry.
 
-<iframe class="giphy-embed" src="https://giphy.com/embed/lPd57S5NodQvzYnNzb" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+![Alt Text](https://giphy.com/embed/lPd57S5NodQvzYnNzb/giphy.gif)
 
 ## Conclusion
 
