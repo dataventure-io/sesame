@@ -282,7 +282,15 @@ Check that you can browse to the sesame program:
 
 <pre>https://your-server-name/cgi-bin/sesame.cgi</pre>
 
-You should see a web page that looks like: ![sesame-userpin](https://dataventure.io/wp-content/uploads/2020/05/sesame-userpin.png) If you've created the sesame.txt file and completed all the configuration steps, you can give it a whirl.  Enter your user pin and click Submit.  You should see a one-time password in your inbox. ![otp](https://dataventure.io/wp-content/uploads/2020/05/otp.png) In the above example, I chose to send the one-time password to my mobile phone via email to SMS.
+You should see a web page that looks like: 
+
+![sesame-userpin](https://dataventure.io/wp-content/uploads/2020/05/sesame-userpin.png) 
+
+If you've created the sesame.txt file and completed all the configuration steps, you can give it a whirl.  Enter your user pin and click Submit.  You should see a one-time password in your inbox. 
+
+![otp](https://dataventure.io/wp-content/uploads/2020/05/otp.png) 
+
+In the above example, I chose to send the one-time password to my mobile phone via email to SMS.
 
 ### Hardware Design ###
 
